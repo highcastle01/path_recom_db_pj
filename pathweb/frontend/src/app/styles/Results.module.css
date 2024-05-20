@@ -1,0 +1,14 @@
+/* src/styles/Page.module.css */
+
+.resultsContainer {
+    padding: 20px;
+    text-align: center;
+}
+
+.resultsContainer h1 {
+    margin-bottom: 20px;
+}
+
+.resultsContainer p {
+    margin: 10px 0;
+}
