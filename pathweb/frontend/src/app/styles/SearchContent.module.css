@@ -1,0 +1,17 @@
+.typeSection {
+    margin-bottom: 20px;
+}
+
+.storeItem {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.storeImage {
+    width: 200px;
+    height: auto;
+    margin-right: 10px;
+}

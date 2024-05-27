@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
+import styles from '../styles/SearchContent.module.css';
 
 interface Store {
   id: number;
@@ -31,6 +32,9 @@ const SearchContent = () => {
           type1: searchParams.get('type1'),
           type2: searchParams.get('type2'),
           type3: searchParams.get('type3'),
+          location1: searchParams.get('location1'),
+          location2: searchParams.get('location2'),
+          location3: searchParams.get('location3'),
           startTime: searchParams.get('startTime'),
           endTime: searchParams.get('endTime'),
           priceMin: searchParams.get('priceMin'),
@@ -53,27 +57,89 @@ const SearchContent = () => {
     fetchStores();
   }, [searchParams]);
 
+  const groupedStores = stores.reduce((acc: any, store) => {
+    if (store.type === searchParams.get('type1')) {
+      acc.type1.push(store);
+    } else if (store.type === searchParams.get('type2')) {
+      acc.type2.push(store);
+    } else if (store.type === searchParams.get('type3')) {
+      acc.type3.push(store);
+    }
+    return acc;
+  }, { type1: [], type2: [], type3: [] });
+
   return (
     <div>
-      <ul>
-        {stores.map(store => (
-          <li key={store.id}>
-            <h2>{store.name}</h2>
-            <p>{store.type}</p>
-            <p>{store.detailtype}</p>
-            <p>{store.location}</p>
-            <p>{store.seat}</p>
-            <p>{store.price}</p>
-            <p>{store.opentime} - {store.closedtime}</p>
-            <p>{store.description}</p>
-            {store.imageUrl ? (
-              <img src={`${process.env.NEXT_PUBLIC_API_URL}${store.imageUrl}`} alt={store.name} width="200" />
-            ) : (
-              <p>No image available</p>
-            )}
-          </li>
-        ))}
-      </ul>
+      <h1>Search Results</h1>
+      {searchParams.get('type1') && (
+        <div className={styles.typeSection}>
+          <h2>{searchParams.get('type1')}</h2>
+          <ul>
+            {groupedStores.type1.map((store: Store) => (
+              <li key={store.id} className={styles.storeItem}>
+                <h3>{store.name}</h3>
+                <p>{store.detailtype}</p>
+                <p>{store.location}</p>
+                <p>{store.seat}</p>
+                <p>{store.price}</p>
+                <p>{store.opentime} - {store.closedtime}</p>
+                <p>{store.description}</p>
+                {store.imageUrl ? (
+                  <img src={`${process.env.NEXT_PUBLIC_API_URL}${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
+                ) : (
+                  <p>No image available</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {searchParams.get('type2') && (
+        <div className={styles.typeSection}>
+          <h2>{searchParams.get('type2')}</h2>
+          <ul>
+            {groupedStores.type2.map((store: Store) => (
+              <li key={store.id} className={styles.storeItem}>
+                <h3>{store.name}</h3>
+                <p>{store.detailtype}</p>
+                <p>{store.location}</p>
+                <p>{store.seat}</p>
+                <p>{store.price}</p>
+                <p>{store.opentime} - {store.closedtime}</p>
+                <p>{store.description}</p>
+                {store.imageUrl ? (
+                  <img src={`${process.env.NEXT_PUBLIC_API_URL}${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
+                ) : (
+                  <p>No image available</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {searchParams.get('type3') && (
+        <div className={styles.typeSection}>
+          <h2>{searchParams.get('type3')}</h2>
+          <ul>
+            {groupedStores.type3.map((store: Store) => (
+              <li key={store.id} className={styles.storeItem}>
+                <h3>{store.name}</h3>
+                <p>{store.detailtype}</p>
+                <p>{store.location}</p>
+                <p>{store.seat}</p>
+                <p>{store.price}</p>
+                <p>{store.opentime} - {store.closedtime}</p>
+                <p>{store.description}</p>
+                {store.imageUrl ? (
+                  <img src={`${process.env.NEXT_PUBLIC_API_URL}${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
+                ) : (
+                  <p>No image available</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
