@@ -1,5 +1,13 @@
+/* Footer.module.css */
 .footer {
-    padding: 20px;
-    background-color: #f8f9fa;
     text-align: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.adContainer {
+    margin-bottom: 10px;
+    width: 100%; /* 컨테이너가 전체 너비를 차지하도록 설정 */
+    max-width: 800px; /* 이미지 컴포넌트와 일치하는 최대 너비 설정 */
+    margin: 0 auto; /* adContainer를 가운데 정렬 */
 }
