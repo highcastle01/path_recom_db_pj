@@ -1,0 +1,10 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "dbpj",
+  "password": "#db240515",
+  "database": "recom_path",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}
