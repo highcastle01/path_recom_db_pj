@@ -1,4 +1,3 @@
-// src/app/_components/SearchContent.tsx
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -35,10 +34,10 @@ const SearchContent = () => {
           location1: searchParams.get('location1'),
           location2: searchParams.get('location2'),
           location3: searchParams.get('location3'),
+          location4: searchParams.get('location4'),
           startTime: searchParams.get('startTime'),
           endTime: searchParams.get('endTime'),
-          priceMin: searchParams.get('priceMin'),
-          priceMax: searchParams.get('priceMax'),
+          price: searchParams.get('price'),
           detailType1: searchParams.get('detailType1'),
           detailType2: searchParams.get('detailType2'),
           detailType3: searchParams.get('detailType3'),
@@ -71,75 +70,37 @@ const SearchContent = () => {
   return (
     <div>
       <h1>Search Results</h1>
-      {searchParams.get('type1') && (
-        <div className={styles.typeSection}>
-          <h2>{searchParams.get('type1')}</h2>
-          <ul>
-            {groupedStores.type1.map((store: Store) => (
-              <li key={store.id} className={styles.storeItem}>
-                <h3>{store.name}</h3>
-                <p>{store.detailtype}</p>
-                <p>{store.location}</p>
-                <p>{store.seat}</p>
-                <p>{store.price}</p>
-                <p>{store.opentime} - {store.closedtime}</p>
-                <p>{store.description}</p>
-                {store.imageUrl ? (
-                  <img src={`${process.env.NEXT_PUBLIC_API_URL}${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
-                ) : (
-                  <p>No image available</p>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {searchParams.get('type2') && (
-        <div className={styles.typeSection}>
-          <h2>{searchParams.get('type2')}</h2>
-          <ul>
-            {groupedStores.type2.map((store: Store) => (
-              <li key={store.id} className={styles.storeItem}>
-                <h3>{store.name}</h3>
-                <p>{store.detailtype}</p>
-                <p>{store.location}</p>
-                <p>{store.seat}</p>
-                <p>{store.price}</p>
-                <p>{store.opentime} - {store.closedtime}</p>
-                <p>{store.description}</p>
-                {store.imageUrl ? (
-                  <img src={`${process.env.NEXT_PUBLIC_API_URL}${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
-                ) : (
-                  <p>No image available</p>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {searchParams.get('type3') && (
-        <div className={styles.typeSection}>
-          <h2>{searchParams.get('type3')}</h2>
-          <ul>
-            {groupedStores.type3.map((store: Store) => (
-              <li key={store.id} className={styles.storeItem}>
-                <h3>{store.name}</h3>
-                <p>{store.detailtype}</p>
-                <p>{store.location}</p>
-                <p>{store.seat}</p>
-                <p>{store.price}</p>
-                <p>{store.opentime} - {store.closedtime}</p>
-                <p>{store.description}</p>
-                {store.imageUrl ? (
-                  <img src={`${process.env.NEXT_PUBLIC_API_URL}${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
-                ) : (
-                  <p>No image available</p>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {['type1', 'type2', 'type3'].map((type, index) => (
+        searchParams.get(type) && (
+          <div key={index} className={styles.typeSection}>
+            <h2>{searchParams.get(type)}</h2>
+            <div className={styles.storeGrid}>
+              {groupedStores[type].map((store: Store) => (
+                <div key={store.id} className={styles.storeItem}>
+                  <div className={styles.storeImageContainer}>
+                    {store.imageUrl ? (
+                      <>
+                        <img src={`${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
+                      </>
+                    ) : (
+                      <p>No image available</p>
+                    )}
+                  </div>
+                  <div className={styles.storeInfo}>
+                    <h3>{store.name}</h3>
+                    <p><strong>세부타입:</strong> {store.detailtype}</p>
+                    <p><strong>위치:</strong> {store.location}</p>
+                    <p><strong>좌석수:</strong> {store.seat}</p>
+                    <p><strong>가격:</strong> {store.price}</p>
+                    <p><strong>영업시간:</strong> {store.opentime} - {store.closedtime}</p>
+                    <p><strong>설명:</strong> {store.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ))}
     </div>
   );
 };

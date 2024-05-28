@@ -1,4 +1,3 @@
-// src/app/_components/MainContent.tsx
 "use client";
 
 import { useState } from 'react';
@@ -14,8 +13,7 @@ export default function MainContent() {
     const [location2, setLocation2] = useState<string>('신정문');
     const [location3, setLocation3] = useState<string>('사대부고');
     const [location4, setLocation4] = useState<string>('기타');
-    const [priceMin, setPriceMin] = useState<string>('8000');
-    const [priceMax, setPriceMax] = useState<string>('15000');
+    const [price, setPrice] = useState<string>('1만원대 이하');
     const [startTime, setStartTime] = useState<string>('11:00');
     const [endTime, setEndTime] = useState<string>('20:00');
     const [detailType1, setDetailType1] = useState<string>('국밥');
@@ -23,16 +21,33 @@ export default function MainContent() {
     const [detailType3, setDetailType3] = useState<string>('');
     const router = useRouter();
 
+    const priceMap: { [key: string]: number } = {
+        '1만원대 이하': 10000,
+        '1만원대': 20000,
+        '2만원대': 30000,
+        '3만원대': 40000,
+        '4만원대': 50000,
+        '4만원대 이상': Infinity,
+    };
+
     const handleSearch = () => {
+        const priceMax = priceMap[price];
+        if (!priceMax && priceMax !== 0) {
+            console.error(`Price range "${price}" not found in priceMap`);
+            return;
+        }
         const query = {
             people,
             type1,
             type2,
             type3,
+            location1,
+            location2,
+            location3,
+            location4,
             startTime: startTime.replace(':', ''),
             endTime: endTime.replace(':', ''),
-            priceMin,
-            priceMax,
+            price: priceMax.toString(),
             detailType1,
             detailType2,
             detailType3,
@@ -152,22 +167,19 @@ export default function MainContent() {
                       </select>
                   </div>
                   <div className={styles.option}>
-                      <label>가격 최소</label>
-                      <input
-                        type="number"
-                        value={priceMin}
-                        onChange={(e) => setPriceMin(e.target.value)}
-                        className={styles.input}
-                      />
-                  </div>
-                  <div className={styles.option}>
-                      <label>가격 최대</label>
-                      <input
-                        type="number"
-                        value={priceMax}
-                        onChange={(e) => setPriceMax(e.target.value)}
-                        className={styles.input}
-                      />
+                      <label>가격</label>
+                      <select
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        className={styles.dropdown}
+                      >
+                          <option value="1만원대 이하">1만원대 이하</option>
+                          <option value="1만원대">1만원대</option>
+                          <option value="2만원대">2만원대</option>
+                          <option value="3만원대">3만원대</option>
+                          <option value="4만원대">4만원대</option>
+                          <option value="4만원대 이상">4만원대 이상</option>
+                      </select>
                   </div>
                   <div className={styles.option}>
                       <label>시간</label>
