@@ -16,7 +16,7 @@ export class AuthController {
     const { username, password } = loginDto;
     console.log('Attempting login for user:', username); // 로그인 시도 로그
     try {
-      const token = await this.authService.login(username, password);
+      const token = await this.authService.login(loginDto);
       res.cookie('jwt', token.access_token, { httpOnly: true });
       console.log('Login successful for user:', username); // 로그인 성공 로그
       return res.send(token);
@@ -31,7 +31,7 @@ export class AuthController {
     const { username, password, name, email, role } = signupDto;
     try {
       console.log('Signup success : ', username);
-      return this.authService.register(username, password, name, email, role);
+      return this.authService.register(signupDto);
     } catch (error){
       console.log('Signup fail : ', username);
     }

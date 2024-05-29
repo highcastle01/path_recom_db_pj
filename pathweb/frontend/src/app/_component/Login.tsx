@@ -19,7 +19,9 @@ export default function Login() {
       });
       console.log('Response received:', res);
       if (res.status === 200) {
-        router.push('/userinfo');
+        const { access_token } = res.data;
+        localStorage.setItem('token', access_token); // JWT 토큰을 로컬 스토리지에 저장
+        router.push('/dashboard');
       } else {
         console.error('Login failed with status:', res.status);
       }

@@ -63,7 +63,7 @@ export default function Header() {
             </div>
           ) : (
             <div>
-              <a href="/login">Login</a> | <a href="/signup">Sign Up</a>
+              <a href="/login">Login</a> | <a href="/signup">Sign Up</a> | <a href="/logout">Logout</a>
             </div>
           )
         )}

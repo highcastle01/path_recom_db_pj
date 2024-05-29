@@ -12,7 +12,6 @@ import { RatingService } from './rating/rating.service';
 import { RatingController } from './rating/rating.controller';
 import { RatingModule } from './rating/rating.module';
 import { PostsModule } from './posts/posts.module';
-// import { AuthModule } from './auth/auth.module';
 import { AuthModule } from './auth/auth.module';
 
 import * as process from 'process';
@@ -38,6 +37,7 @@ import * as process from 'process';
     UserModule,
     RatingModule,
     PostsModule,
+    ConfigModule,
     AuthModule,
   ],
   providers: [RatingService],

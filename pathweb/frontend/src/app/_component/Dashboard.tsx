@@ -4,34 +4,51 @@ import { useEffect, useState } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import { useRouter } from 'next/navigation';
 
-interface Session {
+interface UserInfo {
   username: string;
+  email: string;
+  role: string;
 }
 
 const Dashboard = () => {
-  const [session, setSession] = useState<Session | null>(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchSession = async () => {
+    const fetchUserInfo = async () => {
       try {
-        const res = await axiosInstance.get('/auth/status');
-        setSession(res.data);
+        const token = localStorage.getItem('token'); // 로컬 스토리지에서 JWT 토큰을 가져옴
+        console.log('Token from localStorage:', token);
+        if (!token) {
+          throw new Error('No token found');
+        }
+
+        const res = await axiosInstance.get('/auth/status', {
+          headers: {
+            Authorization: `Bearer ${token}` // 요청 헤더에 JWT 토큰을 포함
+          }
+        });
+        console.log('User info response:', res.data);
+        setUserInfo(res.data);
       } catch (error) {
-        console.error('Failed to fetch session:', error);
-        alert('Session 유지 실패. 다시 로그인 해주세요.');
+        console.error('Failed to fetch user info:', error);
+        alert('Failed to fetch user info. Please log in again.');
         router.push('/login');
       }
     };
 
-    fetchSession();
+    fetchUserInfo();
   }, [router]);
 
   return (
     <div>
       <h1>Dashboard</h1>
-      {session ? (
-        <div>Welcome, {session.username}!</div>
+      {userInfo ? (
+        <div>
+          <p>Welcome, {userInfo.username}!</p>
+          <p>Email: {userInfo.email}</p>
+          <p>Role: {userInfo.role}</p>
+        </div>
       ) : (
         <div>Loading...</div>
       )}

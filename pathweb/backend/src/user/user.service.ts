@@ -21,7 +21,15 @@ export class UserService {
     return this.userRepository.save(newUser);
   }
 
-  async findOne(username: string): Promise<UserEntity | undefined> {
+  findOneById(id: number): Promise<UserEntity | undefined> {
+    return this.userRepository.findOne({ where: { id } });
+  }
+
+  findOneByUsername(username: string): Promise<UserEntity | undefined> {
     return this.userRepository.findOne({ where: { username } });
+  }
+
+  findOneByEmail(email: string): Promise<UserEntity | undefined> {
+    return this.userRepository.findOne({ where: { email } });
   }
 }
