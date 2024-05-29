@@ -1,64 +1,38 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
 
-const Login = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+export default function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/users/login', {
+      console.log('Submitting login form with:', { username, password });
+      const res = await axiosInstance.post('/auth/login', {
         username,
         password,
-      }, { withCredentials: true }); // 세션 쿠키를 사용하기 위해 withCredentials 설정
-
-      if (response.status === 200) {
-        const { user } = response.data;
-        localStorage.setItem('user', JSON.stringify(user));
-        router.push('/dashboard'); // 로그인 성공 시 리디렉션
+      });
+      console.log('Response received:', res);
+      if (res.status === 200) {
+        router.push('/userinfo');
       } else {
-        alert('로그인에 실패했습니다.');
+        console.error('Login failed with status:', res.status);
       }
     } catch (error) {
-      console.error('로그인 오류:', error);
-      alert('로그인에 실패했습니다.');
+      console.error('Login failed:', error);
     }
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
   );
-};
-
-export default Login;
+}

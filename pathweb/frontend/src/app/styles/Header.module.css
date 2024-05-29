@@ -1,25 +1,43 @@
+/* styles/Header.module.css */
+
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f8f9fa;
-}
-
-.top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-}
-
-.profileButton {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    cursor: pointer;
+    position: relative;
 }
 
 .banner {
-    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.username {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+.userStatus {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.userStatus div {
+    display: flex;
+    align-items: center;
+}
+
+.userStatus a, .userStatus button {
+    margin: 0 10px;
 }

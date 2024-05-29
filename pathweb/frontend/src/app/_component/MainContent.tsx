@@ -13,7 +13,6 @@ export default function MainContent() {
     const [location1, setLocation1] = useState<string>('구정문');
     const [location2, setLocation2] = useState<string>('신정문');
     const [location3, setLocation3] = useState<string>('사대부고');
-    const [location4, setLocation4] = useState<string>('기타');
     const [price, setPrice] = useState<string>('1만원대 이하');
     const [startTime, setStartTime] = useState<string>('11:00');
     const [endTime, setEndTime] = useState<string>('20:00');
@@ -45,7 +44,6 @@ export default function MainContent() {
             location1,
             location2,
             location3,
-            location4,
             startTime: startTime.replace(':', ''),
             endTime: endTime.replace(':', ''),
             price: priceMax.toString(),
@@ -70,7 +68,7 @@ export default function MainContent() {
                       />
                   </div>
                   <div className={styles.option}>
-                      <label>목적 1</label>
+                      <label>음식점</label> //드롭다운 말고 체크박스로 해야.
                       <select
                         value={type1}
                         onChange={(e) => setType1(e.target.value)}
@@ -78,7 +76,6 @@ export default function MainContent() {
                       >
                           <option value="음식점">음식점</option>
                           <option value="카페">카페</option>
-                          <option value="스터디">스터디</option>
                           <option value="놀이">놀이</option>
                           <option value="">선택 안함</option>
                       </select>
@@ -92,7 +89,6 @@ export default function MainContent() {
                       >
                           <option value="음식점">음식점</option>
                           <option value="카페">카페</option>
-                          <option value="스터디">스터디</option>
                           <option value="놀이">놀이</option>
                           <option value="">선택 안함</option>
                       </select>
@@ -106,13 +102,12 @@ export default function MainContent() {
                       >
                           <option value="음식점">음식점</option>
                           <option value="카페">카페</option>
-                          <option value="스터디">스터디</option>
                           <option value="놀이">놀이</option>
                           <option value="">선택 안함</option>
                       </select>
                   </div>
                   <div className={styles.option}>
-                      <label>장소 1</label>
+                      <label>음식점 장소</label>
                       <select
                         value={location1}
                         onChange={(e) => setLocation1(e.target.value)}
@@ -121,12 +116,11 @@ export default function MainContent() {
                           <option value="구정문">구정문</option>
                           <option value="신정문">신정문</option>
                           <option value="사대부고">사대부고</option>
-                          <option value="기타">기타</option>
                           <option value="">선택 안함</option>
                       </select>
                   </div>
                   <div className={styles.option}>
-                      <label>장소 2</label>
+                      <label>카페 장소</label>
                       <select
                         value={location2}
                         onChange={(e) => setLocation2(e.target.value)}
@@ -135,12 +129,11 @@ export default function MainContent() {
                           <option value="구정문">구정문</option>
                           <option value="신정문">신정문</option>
                           <option value="사대부고">사대부고</option>
-                          <option value="기타">기타</option>
                           <option value="">선택 안함</option>
                       </select>
                   </div>
                   <div className={styles.option}>
-                      <label>장소 3</label>
+                      <label>놀이 장소</label>
                       <select
                         value={location3}
                         onChange={(e) => setLocation3(e.target.value)}
@@ -149,21 +142,6 @@ export default function MainContent() {
                           <option value="구정문">구정문</option>
                           <option value="신정문">신정문</option>
                           <option value="사대부고">사대부고</option>
-                          <option value="기타">기타</option>
-                          <option value="">선택 안함</option>
-                      </select>
-                  </div>
-                  <div className={styles.option}>
-                      <label>장소 4</label>
-                      <select
-                        value={location4}
-                        onChange={(e) => setLocation4(e.target.value)}
-                        className={styles.dropdown}
-                      >
-                          <option value="구정문">구정문</option>
-                          <option value="신정문">신정문</option>
-                          <option value="사대부고">사대부고</option>
-                          <option value="기타">기타</option>
                           <option value="">선택 안함</option>
                       </select>
                   </div>
@@ -201,44 +179,46 @@ export default function MainContent() {
                       </div>
                   </div>
                   <div className={styles.option}>
-                      <label>세부 유형 1</label>
+                      <label>음식점 유형</label>
                       <select
                         value={detailType1}
                         onChange={(e) => setDetailType1(e.target.value)}
                         className={styles.input}
                       >
-                          <option value="국밥">국밥</option>
-                          <option value="이자카야">이자카야</option>
-                          <option value="보드게임">보드게임</option>
-                          <option value="포차">포차</option>
+                          <option value="한식">한식</option>
+                          <option value="양식">양식</option>
+                          <option value="중식">중식</option>
+                          <option value="일식">일식</option>
+                          <option value="치킨">치킨</option>
+                          <option value="패스트푸드">패스트푸드</option>
                           <option value="">선택 안함</option>
                       </select>
                   </div>
                   <div className={styles.option}>
-                      <label>세부 유형 2</label>
+                      <label>카페 유형</label>
                       <select
                         value={detailType2}
                         onChange={(e) => setDetailType2(e.target.value)}
                         className={styles.input}
                       >
-                          <option value="국밥">국밥</option>
-                          <option value="이자카야">이자카야</option>
-                          <option value="보드게임">보드게임</option>
-                          <option value="포차">포차</option>
+                          <option value="디저트">디저트</option>
+                          <option value="스터디">스터디</option>
                           <option value="">선택 안함</option>
                       </select>
                   </div>
                   <div className={styles.option}>
-                      <label>세부 유형 3</label>
+                      <label>놀이 유형</label>
                       <select
                         value={detailType3}
                         onChange={(e) => setDetailType3(e.target.value)}
                         className={styles.input}
                       >
-                          <option value="국밥">국밥</option>
-                          <option value="이자카야">이자카야</option>
                           <option value="보드게임">보드게임</option>
-                          <option value="포차">포차</option>
+                          <option value="포켓볼">이자카야</option>
+                          <option value="볼링">보드게임</option>
+                          <option value="노래방">노래방</option>
+                          <option value="PC방">PC방</option>
+                          <option value="게임방">게임방</option>
                           <option value="">선택 안함</option>
                       </select>
                   </div>
