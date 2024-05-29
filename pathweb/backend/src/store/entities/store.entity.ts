@@ -30,6 +30,9 @@ export class StoreEntity {
   @Column()
   closedtime: number;
 
+  @Column()
+  rating: number;
+
   @OneToMany(() => RatingEntity, ratingEntity => ratingEntity.store)
   ratings: RatingEntity[];
 

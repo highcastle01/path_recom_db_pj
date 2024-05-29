@@ -14,6 +14,14 @@ export class StoreService {
     return this.storeRepository.find();
   }
 
+  // async getStoreOne(storeId: number): Promise<StoreEntity[]>{
+  //   const store = await this.storeRepository.findOne({ where: { storeId } });
+  //   if (!store) {
+  //     throw new NotFoundException(`Store with id ${storeId} not found`);
+  //   }
+  //   return store;
+  // }
+
   async create(storeData: Partial<StoreEntity>): Promise<StoreEntity> {
     const store = this.storeRepository.create(storeData);
     return this.storeRepository.save(store);
