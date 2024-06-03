@@ -1,13 +1,18 @@
-/* Footer.module.css */
 .footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5); /* 투명한 흰색 배경 */
+    backdrop-filter: blur(100px); /* 배경을 흐리게 함 */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* 다른 요소 위에 위치하도록 설정 */
 }
 
-.adContainer {
-    margin-bottom: 10px;
-    width: 100%; /* 컨테이너가 전체 너비를 차지하도록 설정 */
-    max-width: 800px; /* 이미지 컴포넌트와 일치하는 최대 너비 설정 */
-    margin: 0 auto; /* adContainer를 가운데 정렬 */
+.footer p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
 }
