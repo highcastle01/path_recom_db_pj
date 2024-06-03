@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '../styles/Header.module.css';
-import Image from 'next/image'; // CSS 모듈을 사용한 스타일링
+import styles from '../styles/Header.module.css'; // CSS 모듈을 사용한 스타일링
+import Image from 'next/image';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,18 +44,18 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.banner} onClick={handleBannerClick}>
         <Image src="/images/Header.png" alt="Banner" width={800} height={200} className={styles.bannerImage} />
-        {/*<img src="/path/to/your/banner-image.jpg" alt="Banner Image" className={styles.bannerImage} />*/}
+        <h1>MyApp</h1>
       </div>
       <nav className={styles.nav}>
         {isLoggedIn ? (
           <>
-            <button onClick={handleDashboard}>Dashboard</button>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleDashboard} className={styles.navButton}>Dashboard</button>
+            <button onClick={handleLogout} className={styles.navButton}>Logout</button>
           </>
         ) : (
           <>
-            <button onClick={handleLogin} className={styles.authButton}>Login</button>
-            <button onClick={handleSignup} className={styles.authButton}>Signup</button>
+            <button onClick={handleLogin} className={styles.navButton}>Login</button>
+            <button onClick={handleSignup} className={styles.navButton}>Signup</button>
           </>
         )}
       </nav>

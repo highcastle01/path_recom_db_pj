@@ -6,6 +6,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
+    min-height: calc(200px * 2 + 20px); /* 최소 높이 설정 */
 }
 
 .storeItem {
@@ -41,4 +42,9 @@
 
 .storeInfo p {
     margin: 4px 0;
+}
+
+/* 빈 그리드 셀을 채우기 위한 클래스 */
+.emptyStoreItem {
+    visibility: hidden;
 }

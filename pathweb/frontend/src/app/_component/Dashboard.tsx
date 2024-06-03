@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import axiosInstance from '../../utils/axiosInstance';
 import { useRouter } from 'next/navigation';
+import styles from '../styles/Dashboard.module.css'; // CSS 모듈을 사용한 스타일링
 
 interface UserInfo {
   userId: string;
@@ -53,13 +53,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className={styles.dashboardContainer}>
       <h1>Dashboard</h1>
       {userInfo ? (
-        <div>
+        <div className={styles.userInfo}>
           <p>안녕하세요, {userInfo.username}님!</p>
           <p>Email: {userInfo.email}</p>
           <p>정보: {userInfo.role}</p>
+          <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
         </div>
       ) : (
         <div>Loading...</div>

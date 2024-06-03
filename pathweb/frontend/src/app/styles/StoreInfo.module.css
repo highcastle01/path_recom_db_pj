@@ -1,0 +1,47 @@
+.storeInfoContainer {
+    padding: 20px;
+}
+
+.banner {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.bannerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.storeHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.storeHeader h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.storeType, .storeLocation {
+    margin: 5px 0;
+}
+
+.storeDetails {
+    margin-top: 20px;
+}
+
+.storeDescription {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.storeInfo p {
+    margin: 5px 0;
+}

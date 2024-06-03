@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
+import Link from 'next/link';
 import styles from '../styles/SearchContent.module.css';
 
 interface Store {
@@ -31,7 +32,6 @@ const SearchContent = () => {
           type1: searchParams.get('type1'),
           type2: searchParams.get('type2'),
           type3: searchParams.get('type3'),
-          type4: searchParams.get('type4'),
           location1: searchParams.get('location1'),
           location2: searchParams.get('location2'),
           location3: searchParams.get('location3'),
@@ -42,7 +42,6 @@ const SearchContent = () => {
           detailType1: searchParams.get('detailType1'),
           detailType2: searchParams.get('detailType2'),
           detailType3: searchParams.get('detailType3'),
-          detailType4: searchParams.get('detailType4'),
         };
 
         const response = await axios.get<Store[]>(`${process.env.NEXT_PUBLIC_API_URL}/stores/search`, {
@@ -65,41 +64,44 @@ const SearchContent = () => {
       acc.type2.push(store);
     } else if (store.type === searchParams.get('type3')) {
       acc.type3.push(store);
-    } else if (store.type === searchParams.get('type4')) {
-      acc.type4.push(store);
     }
     return acc;
-  }, { type1: [], type2: [], type3: [], type4: [] });
+  }, { type1: [], type2: [], type3: [] });
 
   return (
     <div>
       <h1>Search Results</h1>
-      {['type1', 'type2', 'type3', 'type4'].map((type, index) => (
-        searchParams.get(type) && (
+      {['type1', 'type2', 'type3'].map((type, index) => (
+        searchParams.get(type) && groupedStores[type].length > 0 && (
           <div key={index} className={styles.typeSection}>
             <h2>{searchParams.get(type)}</h2>
             <div className={styles.storeGrid}>
-              {groupedStores[type].map((store: Store) => (
-                <div key={store.id} className={styles.storeItem}>
-                  <div className={styles.storeImageContainer}>
-                    {store.imageUrl ? (
-                      <>
-                        <img src={`${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
-                      </>
-                    ) : (
-                      <p>No image available</p>
-                    )}
+              {groupedStores[type].slice(0, 14).map((store: Store) => (
+                <Link key={store.id} href={`/storeinfo/${store.id}`} passHref>
+                  <div className={styles.storeItem}>
+                    <div className={styles.storeImageContainer}>
+                      {store.imageUrl ? (
+                        <>
+                          <img src={`${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
+                        </>
+                      ) : (
+                        <p>No image available</p>
+                      )}
+                    </div>
+                    <div className={styles.storeInfo}>
+                      <h3>{store.name}</h3>
+                      <p><strong>세부타입:</strong> {store.detailtype}</p>
+                      <p><strong>위치:</strong> {store.location}</p>
+                      <p><strong>좌석수:</strong> {store.seat}</p>
+                      <p><strong>가격:</strong> {store.price}</p>
+                      <p><strong>영업시간:</strong> {store.opentime} - {store.closedtime}</p>
+                      <p><strong>설명:</strong> {store.description}</p>
+                    </div>
                   </div>
-                  <div className={styles.storeInfo}>
-                    <h3>{store.name}</h3>
-                    <p><strong>세부타입:</strong> {store.detailtype}</p>
-                    <p><strong>위치:</strong> {store.location}</p>
-                    <p><strong>좌석수:</strong> {store.seat}</p>
-                    <p><strong>가격:</strong> {store.price}</p>
-                    <p><strong>영업시간:</strong> {store.opentime} - {store.closedtime}</p>
-                    <p><strong>설명:</strong> {store.description}</p>
-                  </div>
-                </div>
+                </Link>
+              ))}
+              {Array.from({ length: Math.max(0, 14 - groupedStores[type].length) }).map((_, i) => (
+                <div key={`empty-${i}`} className={`${styles.storeItem} ${styles.emptyStoreItem}`}></div>
               ))}
             </div>
           </div>

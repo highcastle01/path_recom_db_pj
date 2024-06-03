@@ -33,12 +33,11 @@
 .nav {
     display: flex;
     gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-.authButton {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
+.navButton {
     padding: 10px 20px;
     background-color: #0070f3;
     color: white;
@@ -47,6 +46,6 @@
     cursor: pointer;
 }
 
-.authButton:hover {
+.navButton:hover {
     background-color: #005bb5;
 }
