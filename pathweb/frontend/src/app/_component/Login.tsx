@@ -24,7 +24,7 @@ export default function Login() {
         localStorage.setItem('email', email); // email을 로컬 스토리지에 저장
         localStorage.setItem('role', role); // role을 로컬 스토리지에 저장
         alert('Login successful. User info stored in localStorage.');
-        router.push('/dashboard');
+        router.push('/');
       } else {
         console.error('Login failed with status:', res.status);
       }
