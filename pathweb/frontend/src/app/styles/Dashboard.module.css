@@ -1,30 +1,64 @@
-/* UpdateStore.module.css */
 .dashboardContainer {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .userInfo {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.userInfo p {
+    margin-bottom: 10px;
 }
 
 .logoutButton, .addButton {
-    display: block;
-    margin: 10px 0;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0070f3;
+    color: white;
+    cursor: pointer;
+}
+
+.logoutButton:hover, .addButton:hover {
+    background-color: #005bb5;
 }
 
 .storesList {
     margin-top: 20px;
 }
 
+.storesList h2 {
+    margin-bottom: 10px;
+}
+
 .storesList ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
 .storesList li {
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 .storesList button {
-    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+.storesList button:hover {
+    background-color: #388e3c;
 }
