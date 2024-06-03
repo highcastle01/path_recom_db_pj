@@ -31,6 +31,7 @@ const SearchContent = () => {
           type1: searchParams.get('type1'),
           type2: searchParams.get('type2'),
           type3: searchParams.get('type3'),
+          type4: searchParams.get('type4'),
           location1: searchParams.get('location1'),
           location2: searchParams.get('location2'),
           location3: searchParams.get('location3'),
@@ -41,6 +42,7 @@ const SearchContent = () => {
           detailType1: searchParams.get('detailType1'),
           detailType2: searchParams.get('detailType2'),
           detailType3: searchParams.get('detailType3'),
+          detailType4: searchParams.get('detailType4'),
         };
 
         const response = await axios.get<Store[]>(`${process.env.NEXT_PUBLIC_API_URL}/stores/search`, {
@@ -63,14 +65,16 @@ const SearchContent = () => {
       acc.type2.push(store);
     } else if (store.type === searchParams.get('type3')) {
       acc.type3.push(store);
+    } else if (store.type === searchParams.get('type4')) {
+      acc.type4.push(store);
     }
     return acc;
-  }, { type1: [], type2: [], type3: [] });
+  }, { type1: [], type2: [], type3: [], type4: [] });
 
   return (
     <div>
       <h1>Search Results</h1>
-      {['type1', 'type2', 'type3'].map((type, index) => (
+      {['type1', 'type2', 'type3', 'type4'].map((type, index) => (
         searchParams.get(type) && (
           <div key={index} className={styles.typeSection}>
             <h2>{searchParams.get(type)}</h2>

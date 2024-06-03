@@ -1,43 +1,52 @@
-/* styles/Header.module.css */
-
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
     position: relative;
 }
 
 .banner {
-    position: relative;
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
 }
 
-.username {
+.bannerImage {
+    width: 100%;
+    height: auto;
+}
+
+.banner h1 {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    font-size: 24px;
     color: white;
+}
+
+.nav {
+    display: flex;
+    gap: 10px;
+}
+
+.authButton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
     padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
     border-radius: 5px;
-    font-size: 1.2em;
+    cursor: pointer;
 }
 
-.userStatus {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 10px 20px;
-}
-
-.userStatus div {
-    display: flex;
-    align-items: center;
-}
-
-.userStatus a, .userStatus button {
-    margin: 0 10px;
+.authButton:hover {
+    background-color: #005bb5;
 }

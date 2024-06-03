@@ -5,6 +5,7 @@ import axiosInstance from '../../utils/axiosInstance';
 import { useRouter } from 'next/navigation';
 
 interface UserInfo {
+  userId: string;
   username: string;
   email: string;
   role: string;
@@ -18,21 +19,23 @@ const Dashboard = () => {
     const fetchUserInfo = async () => {
       try {
         const token = localStorage.getItem('token'); // 로컬 스토리지에서 JWT 토큰을 가져옴
-        console.log('Token from localStorage:', token);
         if (!token) {
           throw new Error('No token found');
         }
 
-        const res = await axiosInstance.get('/auth/status', {
-          headers: {
-            Authorization: `Bearer ${token}` // 요청 헤더에 JWT 토큰을 포함
-          }
-        });
-        console.log('User info response:', res.data);
-        setUserInfo(res.data);
+        const userId = localStorage.getItem('userId');
+        const username = localStorage.getItem('username');
+        const email = localStorage.getItem('email');
+        const role = localStorage.getItem('role');
+
+        if (!userId || !username || !email || !role) {
+          throw new Error('User information is missing');
+        }
+
+        setUserInfo({ userId, username, email, role });
       } catch (error) {
         console.error('Failed to fetch user info:', error);
-        alert('Failed to fetch user info. Please log in again.');
+        alert('Failed to fetch user info: ' + error);
         router.push('/login');
       }
     };
@@ -40,14 +43,23 @@ const Dashboard = () => {
     fetchUserInfo();
   }, [router]);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // 로그아웃 시 토큰 제거
+    localStorage.removeItem('userId'); // 로그아웃 시 userId 제거
+    localStorage.removeItem('username'); // 로그아웃 시 username 제거
+    localStorage.removeItem('email'); // 로그아웃 시 email 제거
+    localStorage.removeItem('role'); // 로그아웃 시 role 제거
+    router.push('/login'); // 로그인 페이지로 이동
+  };
+
   return (
     <div>
       <h1>Dashboard</h1>
       {userInfo ? (
         <div>
-          <p>Welcome, {userInfo.username}!</p>
+          <p>안녕하세요, {userInfo.username}님!</p>
           <p>Email: {userInfo.email}</p>
-          <p>Role: {userInfo.role}</p>
+          <p>정보: {userInfo.role}</p>
         </div>
       ) : (
         <div>Loading...</div>

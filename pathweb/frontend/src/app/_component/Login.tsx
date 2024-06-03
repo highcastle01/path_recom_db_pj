@@ -12,21 +12,25 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      console.log('Submitting login form with:', { username, password });
       const res = await axiosInstance.post('/auth/login', {
         username,
         password,
       });
-      console.log('Response received:', res);
       if (res.status === 200) {
-        const { access_token } = res.data;
+        const { access_token, userId, username, email, role } = res.data;
         localStorage.setItem('token', access_token); // JWT 토큰을 로컬 스토리지에 저장
+        localStorage.setItem('userId', userId); // userId를 로컬 스토리지에 저장
+        localStorage.setItem('username', username); // username을 로컬 스토리지에 저장
+        localStorage.setItem('email', email); // email을 로컬 스토리지에 저장
+        localStorage.setItem('role', role); // role을 로컬 스토리지에 저장
+        alert('Login successful. User info stored in localStorage.');
         router.push('/dashboard');
       } else {
         console.error('Login failed with status:', res.status);
       }
     } catch (error) {
       console.error('Login failed:', error);
+      alert('Login failed: ' + error);
     }
   };
 

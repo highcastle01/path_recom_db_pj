@@ -23,7 +23,7 @@ export default function Signup() {
         role,
       });
       if (res.status === 201) {
-        router.push('/login');
+        router.push('/success');
       }
     } catch (error) {
       console.error('Signup failed', error);
