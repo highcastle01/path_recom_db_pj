@@ -43,30 +43,30 @@ const StoreInfo = () => {
   }
 
   return (
-    <div className={styles.storeInfoContainer}>
-      <div className={styles.banner}>
-        <img src={store.imageUrl} alt={store.name} className={styles.bannerImage} />
-      </div>
-      <div className={styles.storeHeader}>
-        <h1>{store.name}</h1>
-        <p className={styles.storeType}>{store.type}</p>
-        <p className={styles.storeLocation}>{store.location}</p>
-      </div>
-      <div className={styles.storeDetails}>
-        <div className={styles.storeDescription}>
-          <h2>소개</h2>
-          <p>{store.description}</p>
+      <div className={styles.storeInfoContainer}>
+        <div className={styles.banner}>
+          <img src={store.imageUrl} alt={store.name} className={styles.bannerImage} />
         </div>
-        <div className={styles.storeInfo}>
-          <p><strong>Type:</strong> {store.type}</p>
-          <p><strong>Detail Type:</strong> {store.detailtype}</p>
-          <p><strong>Seat:</strong> {store.seat}</p>
-          <p><strong>Price:</strong> {store.price}</p>
-          <p><strong>Open Time:</strong> {store.opentime}</p>
-          <p><strong>Close Time:</strong> {store.closedtime}</p>
+        <div className={styles.storeHeader}>
+          <h1>{store.name}</h1>
+          <p className={styles.storeType}>{store.type}</p>
+          <p className={styles.storeLocation}>{store.location}</p>
+        </div>
+        <div className={styles.storeDetails}>
+          <div className={styles.storeDescription}>
+            <h2>소개</h2>
+            <p>{store.description}</p>
+          </div>
+          <div className={styles.storeInfo}>
+            <p><strong>Type:</strong> {store.type}</p>
+            <p><strong>Detail Type:</strong> {store.detailtype}</p>
+            <p><strong>Seat:</strong> {store.seat}</p>
+            <p><strong>Price:</strong> {store.price}</p>
+            <p><strong>Open Time:</strong> {store.opentime}</p>
+            <p><strong>Close Time:</strong> {store.closedtime}</p>
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
