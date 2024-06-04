@@ -1,11 +1,17 @@
 .storeInfoContainer {
     padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .banner {
-    width: 100%;
+    position: relative;
     height: 300px;
     overflow: hidden;
+    border-radius: 8px 8px 0 0;
 }
 
 .bannerImage {
@@ -15,33 +21,50 @@
 }
 
 .storeHeader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+    text-align: center;
+    margin: 20px 0;
 }
 
 .storeHeader h1 {
+    font-size: 2em;
     margin: 0;
-    font-size: 2rem;
-    text-align: center;
 }
 
-.storeType, .storeLocation {
-    margin: 5px 0;
+.storeType {
+    color: #777;
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.storeLocation {
+    color: #999;
+    font-size: 1em;
 }
 
 .storeDetails {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .storeDescription {
-    background-color: #f8f9fa;
     padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.storeInfo {
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
 }
 
 .storeInfo p {
-    margin: 5px 0;
+    margin: 10px 0;
+}
+
+.storeInfo p strong {
+    display: inline-block;
+    width: 120px;
+    color: #333;
 }
