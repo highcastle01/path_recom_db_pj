@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '../styles/SearchContent.module.css';
 
 interface Store {
@@ -82,7 +83,13 @@ const SearchContent = () => {
                     <div className={styles.storeImageContainer}>
                       {store.imageUrl ? (
                         <>
-                          <img src={`${store.imageUrl}`} alt={store.name} className={styles.storeImage} />
+                          <Image 
+                            src={`${store.imageUrl}`} 
+                            alt={store.name} 
+                            className={styles.storeImage} 
+                            layout="fill"
+                            objectFit="cover"
+                          />
                         </>
                       ) : (
                         <p>No image available</p>

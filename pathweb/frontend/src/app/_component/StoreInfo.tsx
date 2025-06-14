@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
 import styles from '../styles/StoreInfo.module.css';
+import Image from 'next/image';
 
 interface Store {
   id: number;
@@ -45,7 +46,13 @@ const StoreInfo = () => {
   return (
       <div className={styles.storeInfoContainer}>
         <div className={styles.banner}>
-          <img src={store.imageUrl} alt={store.name} className={styles.bannerImage} />
+          <Image 
+            src={store.imageUrl} 
+            alt={store.name} 
+            className={styles.bannerImage} 
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
         <div className={styles.storeHeader}>
           <h1>{store.name}</h1>

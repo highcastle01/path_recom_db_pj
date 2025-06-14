@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from '../Home.module.css';
+import Image from 'next/image';
 
 export default function Home() {
     return (
@@ -11,7 +12,7 @@ export default function Home() {
         </Head>
 
         <header className={styles.header}>
-    <img src="/images/sample.png" alt="Sample" />
+    <Image src="/images/sample.png" alt="Sample" width={500} height={300} />
     <div className={styles.profile}>
         <span>Profile / Logout</span>
         </div>
@@ -53,14 +54,14 @@ export default function Home() {
 
         <div className={styles.results}>
     <div className={styles['result-card']}>
-    <img src="/images/sample.png" alt="디찜" />
+    <Image src="/images/sample.png" alt="디찜" width={500} height={300} />
         <h2>디찜</h2>
         <p>카페, 디저트</p>
     <p>쾌적한 스터디 진행에 좋습니다.</p>
     <p>상태: 쾌적</p>
     </div>
     <div className={styles['result-card']}>
-    <img src="/images/sample.png" alt="명륜" />
+    <Image src="/images/sample.png" alt="명륜" width={500} height={300} />
         <h2>명륜</h2>
         <p>카페, 디저트</p>
     <p>상점이유: 디저트 맛있고 공간도 넓어서 공부하기 좋음</p>
